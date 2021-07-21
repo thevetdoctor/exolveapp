@@ -1,0 +1,71 @@
+.row {
+    background-color: #fff;
+    color: #25213b;
+    display: flex;
+    /* flex-flow: row nowrap; */
+    justify-content: space-evenly;
+    height: 60px;
+    padding: 0.6em 0 0.6em 0;
+    color: #575763;
+    box-shadow: inset 0px -1px 0px rgba(183, 183, 183, 0.25);
+}
+.mini-span {
+    width: 3em;
+    flex: 2;
+}
+.mini-span-small {
+    width: 3em;
+    flex: 1;
+}
+.span-name {
+    font-weight: bold;
+    width: 20em;
+    color: #25213B;
+
+}
+.main-span {
+    flex: 10;
+    width: 15em;
+}
+input {
+    background-color: #9f9f9f;
+    width: 0.8em;
+}
+.issues, .forks, .gazers {
+    font-weight: bold;
+    padding: 0.2em;
+    border-radius: 0.3em;
+}
+.invalid {
+    color: #8C70FF;
+    background-color: #F6F3FF;
+}
+.valid {
+    color: #F4B400;
+    background-color: #FFF6DE;
+} 
+.row-heading {
+    color: #899198;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #F3F6F9;
+}
+.low {
+    color: #3AB65C;
+    background-color: #F6F3FF;
+}
+.high {
+    color: #F4B400;
+    background-color: #FFF6DE;
+}
+.hide {
+    visibility:hidden;
+}
+.zero {
+    color: #3AB65C;
+    background-color: #F6F3FF;
+}
+.count {
+    color: #00A2D6;
+    background-color: #F6F3FF;
+}

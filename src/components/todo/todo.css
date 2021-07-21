@@ -1,0 +1,15 @@
+p {
+    margin: 0.4em 1em;
+    color: #3d3d49;
+    font-size: 1.1em;
+    box-shadow: inset 0px -1px 0px rgba(183, 183, 183, 0.25);
+}
+.todo-item {
+    width: 15em;
+    padding: 0.5em;
+    display: flex;
+    justify-content: space-between;
+}
+.done {
+    text-decoration: line-through;
+}

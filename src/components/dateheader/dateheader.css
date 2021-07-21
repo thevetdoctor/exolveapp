@@ -1,0 +1,23 @@
+.date-header {
+    display: flex;
+    justify-content: space-between;
+    width: 17em;
+}
+.date-day {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5em;
+    font-weight: bold;
+    line-height: 1.2em;
+}
+.date-month-year {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    font-size: 0.4em;
+    line-height: 0.6em;
+}
+.weekday {
+    margin-top: 1em;
+    font-weight: bold;
+}

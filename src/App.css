@@ -1,0 +1,27 @@
+.app {
+  text-align: center;
+  background-color: #e5e5e5;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 1em;
+  margin: 0;
+  width: 100%;
+}
+.top-content {
+  display: flex;
+  width: 95%;
+}
+h2 {
+  color: #00A2D6;
+  background-color: #F6F3FF;
+  border-radius: 0.3em;
+  padding: 0.3em;
+  margin-bottom: -0.2em;
+  margin-top: 0.1em;
+}
+.app-left {
+  font-size: 1.15em;
+  margin-right: -2em;
+}

@@ -1,0 +1,12 @@
+.banner {
+    width: 70vw;
+    font-size: 0.9em;
+    border-radius: 0.5em;
+    font-family: 'Open Sans', sans-serif;    /* box-shadow: 0.3em 0.3em 0.2em rgb(210, 214, 214); */
+    margin-bottom: 1em;
+}
+.dashboard-top {
+    display: flex;
+    justify-content: space-around;
+  }
+

@@ -1,0 +1,21 @@
+img {
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+}
+.todos {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 22em;
+    font-size: 0.9em;
+    font-family: 'Roboto', sans-serif;    
+    border-radius: 0.5em;
+    line-height: 1em;
+    /* padding: 0.3em; */
+    margin: 0.5em;
+    background-color: #fff;
+    color: #545454;
+    box-shadow: 0px 4px 30px rgba(192, 192, 192, 0.25);
+}
