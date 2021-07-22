@@ -1,0 +1,66 @@
+.todo-form {
+    /* position: relative; */
+    display: flex;
+    flex-flow: column;
+    font-family: 'Roboto', sans-serif;    
+    box-shadow: none;
+}
+.todo-form-header {
+    font-size: 1.4em;
+    font-weight: bolder;
+    /* padding-left: -0.9em; */
+}
+.todo-form-tip {
+    font-size: 0.8em;
+    margin-bottom: 1.3em;
+}
+.todo-form span {
+    margin-bottom: 0.4em;
+    font-weight: 300;
+}
+.close-div {
+    display: flex;
+    width: 20em;
+}
+.close-btn {
+    position: relative;
+    right: 1em;
+}
+input[type='text'] {
+    width: 20em;
+    padding: 0.8em;
+    margin-top: 0.9em;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8em;
+    border-bottom: 0.01em solid rgb(184, 180, 180); 
+}
+input[type='text']:focus {
+  outline: none;
+}
+
+.todo-input {
+    border: none;
+}
+.btn {
+    padding: 0.3em;
+    border-radius: 0.3em;
+    align-self: flex-end;
+    margin-left: 0.1em;
+}
+.btn:hover {
+    cursor: pointer;
+}
+.btn-span {
+    margin-top: 0.3em;
+    font-size: 0.9em;
+    margin-left: 1em;
+}
+.add {
+    color: rgb(68, 140, 182);
+}
+.cancel {
+    color: rgb(151, 154, 156);
+}

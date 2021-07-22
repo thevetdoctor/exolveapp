@@ -18,6 +18,7 @@
     line-height: 0.6em;
 }
 .weekday {
-    margin-top: 1em;
-    font-weight: bold;
+    margin-top: 0.7em;
+    font-weight: 900;
+    font-size: 1.3em;
 }

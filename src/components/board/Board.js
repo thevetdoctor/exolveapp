@@ -5,7 +5,7 @@ import Row from '../row/Row';
 // import data from '../../data';
 import { useGlobalState } from '../../Provider';
 import './board.css';
-
+ 
 export default function Board() {
     const [state, dispatch] = useGlobalState();
     const derivedData = state.repoData.map(item => {
@@ -19,29 +19,22 @@ export default function Board() {
               }
       });
     
-    const apiUrl = `https://api.github.com/users/${state.username}/repos?type=all&sort=updated`;
+    const apiUrl = `https://api.github.com/users/${state.username}/repos?type=all&sort=updated&per_page=8&page=3`;
 
-//   useEffect(() => {
-//     setTimeout(()=> {
-//         dispatch({
-//             type: 'SET_REPO_DATA',
-//             data
-//         });
-//     }, 1000);
-//     return () => console.log('cleanup Board.js')
-//   }, []);
   useEffect(() => {
     const fetchData = async() => {
-      const res = await axios({
-        method: 'GET',
-        url: `${apiUrl}`,
-        headers: {'Content-Type': 'application/json'}
-      });
-      console.log("API data", res.data);
-      dispatch({
-        type: 'SET_REPO_DATA',
-        data: res.data
-      })      
+      if(state.username) {
+        const res = await axios({
+          method: 'GET',
+          url: `${apiUrl}`,
+          headers: {'Content-Type': 'application/json'}
+        });
+        console.log("API data", res.data);
+        dispatch({
+          type: 'SET_REPO_DATA',
+          data: res.data
+        });    
+      }
     }
     fetchData();
     return () => console.log('cleanup Board.js')

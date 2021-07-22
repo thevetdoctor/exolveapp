@@ -33,27 +33,20 @@ export default function Profile() {
     
     const apiUrl = `https://api.github.com/users/${state.username}`;
     
-    // useEffect(() => {
-    //     setTimeout(()=> {
-    //         dispatch({
-    //             type: 'SET_PUBLIC_DATA',
-    //             publicData: public_data
-    //         });
-    //     }, 1000);
-    //     return () => console.log('cleanup Profile.js')
-    // }, []);
     useEffect(() => {
         const fetchData = async() => {
-          const res = await axios({
+          if(state.username) {
+            const res = await axios({
             method: 'GET',
             url: `${apiUrl}`,
             headers: {'Content-Type': 'application/json'}
-          });
-          console.log("API data", res.data);
-          dispatch({
-            type: 'SET_PUBLIC_DATA',
-            publicData: res.data
-          })      
+            });
+            console.log("API data", res.data);
+            dispatch({
+              type: 'SET_PUBLIC_DATA',
+              publicData: res.data
+            });
+          }  
         }
         fetchData();
         return () => console.log('cleanup Profile.js')

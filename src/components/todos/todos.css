@@ -21,5 +21,12 @@ img {
     box-shadow: 0.3em 0.3em 0.2em rgb(233, 236, 236);
 }
 .todo-dateheader {
-    margin: 0.4em 1em;
+    margin: 1em 1em;
+    font-size: 1.1em;
+}
+.add-todo {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    right: -15em;
 }

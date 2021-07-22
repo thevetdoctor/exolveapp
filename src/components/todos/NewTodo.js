@@ -2,26 +2,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
+import { useGlobalState } from '../../Provider';
 import Modal from "react-modal";
+import './newtodo.css';
 
 export default function NewTodo() {
-  const [userId, setUserId] = useState(true);
+  const [state, dispatch] = useGlobalState();
+  const [todoText, setTodoText] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [openModal, setOpenModal] = useState(true);
 
-  useEffect(() => {
-    if (userId) {
-      setOpenModal(false);
-    }
-  }, []);
+  const closeModal = () => {
+    dispatch({
+        type: 'ADD_TODO',
+        addTodo: false
+    });
+};
 
   Modal.setAppElement("div");
 
   const customStyles = {
     content: {
-      backgroundColor: "#3a3e3fb7",
+      background: "rgba(255,255,255, 0.3)",
       fontSize: "1.2em",
-      top: "44%",
+      top: "54%",
       left: "50%",
       right: "auto",
       bottom: "auto",
@@ -29,7 +32,7 @@ export default function NewTodo() {
       transform: "translate(-50%, -50%)",
       display: "flex",
       flexFlow: "column",
-      width: "80vw",
+      width: "25vw",
       alignItems: "center",
       borderRadius: "1rem",
       justifyContent: "center"
@@ -37,24 +40,53 @@ export default function NewTodo() {
   };
   const formChange = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+    setTodoText(e.target.value);
   };
-  const submitForm = (e) => {
-    e.preventDefault();
-    const name = e.target[0].value;
-    const type = e.target[1].value;
-    console.log(e.target[1].value);
-    //    addTask(name, type);
+  const cancelTodo = () => {
+    console.log('Cancelling Todo');
+    setTodoText('');
+  };
+  const saveTodo = () => {
+    if(todoText) {
+      // create unique ID for TODO
+      let str = Math.trunc(Math.random() * 1000);
+      let id = `5fa82b63f201f705d1a3ab${str}`;      
+      
+      dispatch({
+        type: 'SAVE_TODO',
+        todo: {id, name: todoText, done: false}
+      });
+      setTodoText('');
+    } else {
+      console.log('Input field is empty');
+      return false;
+    }
+    console.log(todoText);
   };
 
   return (
-    <Modal isOpen={openModal} style={customStyles}>
-      <div className="closeBtn" onClick={() => setOpenModal(false)}>
+    <Modal isOpen={state.addTodo} style={customStyles}>
+      <div className="close-div" onClick={() => closeModal()}>
         <span className="close-btn">
           <FaTimes />
         </span>
       </div>
-    
+      <div className='todo-form'>
+        <span className='todo-form-header'>New Todo </span>
+        <span className='todo-form-tip'>Please write content of TODO in the input below </span>
+        <span className='todo-input'>
+          <input
+            type='text'
+            placeholder='Do something ...'
+            value={todoText}
+            onChange={formChange}
+          />
+        </span>
+        <span className='btn-span'>
+          <span className='cancel btn' onClick={() => cancelTodo()}>Cancel</span>
+          <span className='add btn' onClick={() => saveTodo()}>Add</span>
+        </span>
+      </div>
     </Modal>
   );
 }

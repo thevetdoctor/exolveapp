@@ -16,7 +16,12 @@
     padding-left: 0.25em;
 }
 .user-action {
-    margin-left: -1.5em;
+    margin-left: 0.2em;
+}
+.logout {
+    position: absolute;
+    top: 1.8em;
+    right: 0.5em
 }
 /* .user-notification { */
     /* margin-top: 0.2em; */

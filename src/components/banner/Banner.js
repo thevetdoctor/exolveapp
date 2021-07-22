@@ -14,11 +14,11 @@ export default function Banner() {
     return (
         <div className='banner'>
             <div className='dashboard-top'>
-            <Slide tag='Public repos' count={public_repos} /> 
-            <Slide tag='Public gists' count={public_gists} /> 
-            <Slide tag='Followers' count={followers} /> 
-            <Slide tag='Following' count={following} /> 
-        </div> 
+                <Slide tag='Public repos' count={public_repos} /> 
+                <Slide tag='Public gists' count={public_gists} /> 
+                <Slide tag='Followers' count={followers} /> 
+                <Slide tag='Following' count={following} /> 
+            </div> 
         </div>
     )
 }
