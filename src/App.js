@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import Dashboard from './components/dashboard/Dashboard';
 import { useGlobalState } from './Provider';
@@ -40,9 +42,9 @@ function App() {
             })
             .catch((error) => console.log(error));
   }
-  useEffect(async() => {
+  useEffect(() => {
     if(!state.user) {
-      const user = await auth.currentUser();
+      const user = auth.currentUser();
       console.log(user);
       if(!user) {
        login();
@@ -58,7 +60,7 @@ function App() {
     }
 
     return () => console.log('cleanup App.js')
-  }, []);
+  }, [state.user]);
   
   useEffect(() => {
     const ques = prompt('Enter your github username', 'thevetdoctor');

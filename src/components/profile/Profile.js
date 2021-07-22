@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { IoLogoLinkedin, 
@@ -41,7 +42,7 @@ export default function Profile() {
     //     }, 1000);
     //     return () => console.log('cleanup Profile.js')
     // }, []);
-    useEffect(async() => {
+    useEffect(() => {
         const fetchData = async() => {
           const res = await axios({
             method: 'GET',
@@ -54,7 +55,7 @@ export default function Profile() {
             publicData: res.data
           })      
         }
-        await fetchData();
+        fetchData();
         return () => console.log('cleanup Profile.js')
       }, [state.username]);
       
