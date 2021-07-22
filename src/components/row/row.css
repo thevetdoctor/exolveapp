@@ -49,6 +49,7 @@ input {
     font-weight: bold;
     text-transform: uppercase;
     background: #F3F6F9;
+    margin-bottom: -1.5em;
 }
 .low {
     color: #3AB65C;

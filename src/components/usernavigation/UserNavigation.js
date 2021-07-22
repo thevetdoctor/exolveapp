@@ -8,7 +8,11 @@ import './usernavigation.css';
 export default function UserNavigation() {
     return (
         <div className='usernavigation'>
-            <IoNotificationsSharp />
+            <span className='user-notification'>
+            <IoNotificationsSharp 
+                color='#72809d'
+                />
+            </span>
             <span className='user-avatar'>
                 <IoPersonSharp size='0.9em'/>
             </span>

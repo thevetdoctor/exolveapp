@@ -1,4 +1,4 @@
-const bio = {
+const public_data = {
     "login": "thevetdoctor",
     "id": 13197630,
     "node_id": "MDQ6VXNlcjEzMTk3NjMw",
@@ -33,4 +33,4 @@ const bio = {
     "updated_at": "2021-07-21T08:20:28Z"
   }
 
-  export default bio;
+  export default public_data;

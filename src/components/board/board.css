@@ -1,7 +1,8 @@
  .board {
-     width: 70vw;
+     width: 75vw;
      font-size: 0.9em;
      font-family: 'Open Sans', sans-serif;     border-radius: 0.5em;
      box-shadow: 0.3em 0.3em 0.2em rgb(210, 214, 214);
+     box-shadow: 0.3em 0.3em 0.2em rgb(233, 236, 236);
     }
 

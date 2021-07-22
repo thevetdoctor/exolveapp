@@ -9,7 +9,7 @@ img {
     justify-content: space-between;
     align-items: flex-start;
     width: 22em;
-    font-size: 0.9em;
+    font-size: 0.7em;
     font-family: 'Roboto', sans-serif;    
     border-radius: 0.5em;
     line-height: 1em;
@@ -18,4 +18,8 @@ img {
     background-color: #fff;
     color: #545454;
     box-shadow: 0px 4px 30px rgba(192, 192, 192, 0.25);
+    box-shadow: 0.3em 0.3em 0.2em rgb(233, 236, 236);
+}
+.todo-dateheader {
+    margin: 0.4em 1em;
 }

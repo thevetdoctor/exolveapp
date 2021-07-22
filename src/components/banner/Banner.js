@@ -1,19 +1,23 @@
 import React from 'react';
 import Slide from '../slide/Slide';
-import repos from '../../repos';
-import gists from '../../gists';
-import followers from '../../followers';
-import following from '../../following';
+import { useGlobalState } from '../../Provider';
 import './banner.css';
 
 export default function Banner() {
+    const [state] = useGlobalState();
+    const { public_repos, 
+            public_gists, 
+            followers, 
+            following 
+            } = state.publicData;
+            
     return (
         <div className='banner'>
             <div className='dashboard-top'>
-            <Slide tag='Public repos' count={repos.length} /> 
-            <Slide tag='Public gists' count={gists.length} /> 
-            <Slide tag='Followers' count={followers.length} /> 
-            <Slide tag='Following' count={following.length} /> 
+            <Slide tag='Public repos' count={public_repos} /> 
+            <Slide tag='Public gists' count={public_gists} /> 
+            <Slide tag='Followers' count={followers} /> 
+            <Slide tag='Following' count={following} /> 
         </div> 
         </div>
     )

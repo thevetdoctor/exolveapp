@@ -15,7 +15,6 @@ export default function DateHeader() {
         'Sunday'
     ];
     const dateArray = dateDetails.toDateString().split(' ');
-    console.log(dateArray)
 
     return (
         <div className='date-header'>

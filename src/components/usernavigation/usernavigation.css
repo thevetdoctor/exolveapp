@@ -10,13 +10,14 @@
     left: 90%;
 }
 .user-avatar {
-    /* background-color: #72809d; */
     background: #D8D8D8;
     border-radius: 50%;
-    width: 1.2em;
-    /* height: 1em; */
+    width: 1.1em;
     padding-left: 0.25em;
 }
 .user-action {
     margin-left: -1.5em;
 }
+/* .user-notification { */
+    /* margin-top: 0.2em; */
+/* } */
