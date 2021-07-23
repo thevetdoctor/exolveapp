@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import GoTrue from 'gotrue-js';
 import { IoChevronDownSharp,
@@ -6,11 +7,11 @@ import { IoChevronDownSharp,
          IoPersonSharp,
          IoExitSharp
         } from 'react-icons/io5';
-import { useGlobalState } from '../../Provider';
+import store from '../../redux/store';
 import './usernavigation.css';
 
 export default function UserNavigation() {
-    const [, dispatch] = useGlobalState();
+    const {dispatch} = store;
 
     const [nav, setNav] = useState(false);
     const navigate = () => {
@@ -62,7 +63,7 @@ export default function UserNavigation() {
                     <IoChevronUpSharp size='0.8em' />
                 }
             </span>
-            <span onClick={() => logout()}>
+            <span className='user-logout' onClick={() => logout()}>
                     {nav && <IoExitSharp size='0.9em' />}
             </span>
             {/* {nav && <span className='logout'>logout</span>} */}

@@ -1,15 +1,18 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Slide from '../slide/Slide';
-import { useGlobalState } from '../../Provider';
+import { useSelector } from 'react-redux';
+import store from '../../redux/store';
 import './banner.css';
 
 export default function Banner() {
-    const [state] = useGlobalState();
+    const {getState, dispatch} = store;
+    const state = getState();  
     const { public_repos, 
             public_gists, 
             followers, 
             following 
-            } = state.publicData;
+            } = useSelector(state => state.publicData);
             
     return (
         <div className='banner'>

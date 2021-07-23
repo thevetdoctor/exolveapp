@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { IoLogoLinkedin, 
@@ -11,13 +12,14 @@ import { IoLogoLinkedin,
          IoEarSharp,
          IoLocationSharp
         } from 'react-icons/io5';
-// import public_data from '../../publicdata';
-import { useGlobalState } from '../../Provider';
+import { useSelector } from 'react-redux';
+import store from '../../redux/store';
 import './profile.css';
 
 export default function Profile() {
-    const [state, dispatch] = useGlobalState();
-    const { bio,
+  const {getState, dispatch} = store;
+  const state = getState();     
+  const { bio,
             blog,
             name,
             login,
@@ -29,13 +31,14 @@ export default function Profile() {
             public_gists, 
             followers, 
             following 
-            } = state.publicData;
+            } = useSelector(state => state.publicData);
+  const { username } = useSelector(state => state);
     
-    const apiUrl = `https://api.github.com/users/${state.username}`;
+    const apiUrl = `https://api.github.com/users/${username}`;
     
     useEffect(() => {
         const fetchData = async() => {
-          if(state.username) {
+          if(username) {
             const res = await axios({
             method: 'GET',
             url: `${apiUrl}`,
@@ -50,7 +53,7 @@ export default function Profile() {
         }
         fetchData();
         return () => console.log('cleanup Profile.js')
-      }, [state.username]);
+      }, [username]);
       
     return (
         <div className='profile'>

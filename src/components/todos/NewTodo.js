@@ -2,12 +2,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
-import { useGlobalState } from '../../Provider';
+import { useSelector } from 'react-redux';
+import store from '../../redux/store';
 import Modal from "react-modal";
 import './newtodo.css';
 
 export default function NewTodo() {
-  const [state, dispatch] = useGlobalState();
+  const {getState, dispatch} = store;
+  const state = getState();
   const [todoText, setTodoText] = useState('');
   const [submitted, setSubmitted] = useState(false);
 

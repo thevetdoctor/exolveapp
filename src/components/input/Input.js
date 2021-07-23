@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import store from '../../redux/store';
 import './Input.css';
-import { useGlobalState } from '../../Provider';
 
 export default function Input(props) {
-    const [, dispatch] = useGlobalState();
+    const {getState, dispatch} = store;
+    const state = getState();     
 
     const handleInputChange = (e) => {
                 const target = e.target;

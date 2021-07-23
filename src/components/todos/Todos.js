@@ -1,12 +1,16 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import DateHeader from '../dateheader/DateHeader'; 
 import Todo from '../todo/Todo';
-import { useGlobalState } from '../../Provider';
+import { useSelector } from 'react-redux';
+import store from '../../redux/store';
 import { IoAddCircleSharp } from 'react-icons/io5';
 import './todos.css';
 
 export default function Todos() {
-    const [state, dispatch] = useGlobalState();
+    const {getState, dispatch} = store;
+    const state = getState();
+    const { todos } = useSelector(state => state);
     
     const addTodo = () => {
         dispatch({
@@ -20,7 +24,7 @@ export default function Todos() {
             <div className='todo-dateheader'>
                 <DateHeader />
             </div>
-            {state.todos.map((todo, idx) => (
+            {todos.map((todo, idx) => (
                 <Todo 
                     key={idx}
                     id={todo.id}

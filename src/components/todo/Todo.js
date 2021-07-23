@@ -1,10 +1,10 @@
 import React from 'react'
 import { IoCheckmarkCircle, IoEllipseOutline } from 'react-icons/io5';
-import { useGlobalState } from '../../Provider';
+import store from '../../redux/store';
 import './todo.css';
 
 export default function Todo({id, name, done}) {
-    const [, dispatch] = useGlobalState();
+    const {dispatch} = store;
 
     const handleDone = (e) => {
         e.preventDefault();

@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import GoTrue from 'gotrue-js';
 import Loader from 'react-loader-spinner';
 import Input from '../input/Input';
 import Button from '../input/Buttons';
-import { useGlobalState } from '../../Provider';
+import store from '../../redux/store';
 import './homepage.css';
 
 export default function Homepage() {
-    const [state, dispatch] = useGlobalState();
-    const { email, password, username, tag } = state;
-
+    const {getState, dispatch} = store;
+    const state = getState();    
+    const { email, password, username, tag } = useSelector(state => state);
+    console.log(state)
     const [loading, setLoading] = useState(false);
     const [signupMode, setSignupMode] = useState(true);
     

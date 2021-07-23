@@ -1,16 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Dashboard from './components/dashboard/Dashboard';
 import Homepage from './components/homepage/Homepage';
-import { useGlobalState } from './Provider';
-import GoTrue from 'gotrue-js';
 import NewTodo from './components/todos/NewTodo';
+import store from './redux/store';
 
 function App() {
-  const [state, dispatch] = useGlobalState();
+  const {getState, dispatch} = store;
+  const state = getState();
   console.log(state);
-  const { authenticated, email, password } = state;
+  const { authenticated } = useSelector(state => state);
   
   return (
     <div className="App">

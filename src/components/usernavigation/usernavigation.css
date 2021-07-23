@@ -17,6 +17,10 @@
 }
 .user-action {
     margin-left: 0.2em;
+    cursor: pointer;
+}
+.user-logout {
+    cursor: pointer;
 }
 .logout {
     position: absolute;

@@ -1,14 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import Row from '../row/Row';
-// import data from '../../data';
-import { useGlobalState } from '../../Provider';
+import { useSelector } from 'react-redux';
+import store from '../../redux/store';
 import './board.css';
  
 export default function Board() {
-    const [state, dispatch] = useGlobalState();
-    const derivedData = state.repoData.map(item => {
+  const {getState, dispatch} = store;
+  const state = getState();
+  const { repoData, username } = useSelector(state => state);
+    const derivedData = repoData.map(item => {
         return {
                 name: item.name,
                 description: item.description,
@@ -19,11 +22,11 @@ export default function Board() {
               }
       });
     
-    const apiUrl = `https://api.github.com/users/${state.username}/repos?type=all&sort=updated&per_page=8&page=3`;
+    const apiUrl = `https://api.github.com/users/${username}/repos?type=all&sort=updated&per_page=8&page=3`;
 
   useEffect(() => {
     const fetchData = async() => {
-      if(state.username) {
+      if(username) {
         const res = await axios({
           method: 'GET',
           url: `${apiUrl}`,
@@ -38,7 +41,7 @@ export default function Board() {
     }
     fetchData();
     return () => console.log('cleanup Board.js')
-  }, [state.username]);
+  }, [username]);
 
     return (
         <div className='board'>
