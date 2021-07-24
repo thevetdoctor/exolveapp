@@ -33,7 +33,9 @@ export default function Profile() {
             following 
             } = useSelector(state => state.publicData);
   const { username } = useSelector(state => state);
-    
+  const blogHref = blog?.indexOf('http') > -1 ? blog : `https://www.${blog?.trim()}`;
+  console.log(blogHref, blog);
+
     const apiUrl = `https://api.github.com/users/${username}`;
     
     useEffect(() => {
@@ -44,7 +46,7 @@ export default function Profile() {
             url: `${apiUrl}`,
             headers: {'Content-Type': 'application/json'}
             });
-            console.log("API data", res.data);
+            // console.log("API data", res.data);
             dispatch({
               type: 'SET_PUBLIC_DATA',
               publicData: res.data
@@ -70,7 +72,7 @@ export default function Profile() {
                 </span>
             </p>
             {bio && <p><IoBriefcase size='1.8em'/> <span>{bio}</span></p>}
-            {blog && <p><IoLogoLinkedin /> <span><a href={blog}>...{blog.split('com')[1]}</a></span></p>}
+            {blog && <p><IoLogoLinkedin /> <span><a href={blogHref}>...{blog.split('.com')[1]}</a></span></p>}
             {email && <p><IoMailSharp /> <span>{email}</span></p>}
             {twitter_username && <p><IoLogoTwitter /> <span><a href={`https://www.twitter.com/${twitter_username}`}>@{twitter_username}</a></span></p>}
             {location && <p><IoLocationSharp /> <span>{location}</span></p>}

@@ -6,11 +6,10 @@ import Dashboard from './components/dashboard/Dashboard';
 import Homepage from './components/homepage/Homepage';
 import NewTodo from './components/todos/NewTodo';
 import store from './redux/store';
-
+    
 function App() {
   const {getState, dispatch} = store;
   const state = getState();
-  console.log(state);
   const { authenticated } = useSelector(state => state);
   
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import GoTrue from 'gotrue-js';
@@ -11,7 +12,6 @@ export default function Homepage() {
     const {getState, dispatch} = store;
     const state = getState();    
     const { email, password, username, tag } = useSelector(state => state);
-    console.log(state)
     const [loading, setLoading] = useState(false);
     const [signupMode, setSignupMode] = useState(true);
     
@@ -47,7 +47,6 @@ export default function Homepage() {
       await auth
             .login(email, password, true)
             .then((response) => {
-              console.log(response);
               setLoading(false);
                 dispatch({
                     type: 'SET_USER',
@@ -70,7 +69,6 @@ export default function Homepage() {
 
     const handleSubmit = () => {
         setLoading(true);
-        console.log(email, password, username);
         if(signupMode) {
             signup();
         } else {

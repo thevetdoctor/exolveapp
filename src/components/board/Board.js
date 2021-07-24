@@ -32,7 +32,7 @@ export default function Board() {
           url: `${apiUrl}`,
           headers: {'Content-Type': 'application/json'}
         });
-        console.log("API data", res.data);
+        // console.log("API data", res.data);
         dispatch({
           type: 'SET_REPO_DATA',
           data: res.data

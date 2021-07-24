@@ -52,9 +52,10 @@ export default function reducer(state= initialState, action) {
             };
         case actions.setAuthenticate.type:
             console.log('Setting authenticate');
-            localStorage.setItem('authenticated', JSON.stringify(action.data));
+            localStorage.setItem('authenticated', true);
+            localStorage.setItem('user', true);
             return {
-                ...state, authenticated: action.data
+                ...state, authenticated: action.data, user: true, password: 'hidden'
             };
         case actions.setPublicData.type:
             console.log('Adding public data');

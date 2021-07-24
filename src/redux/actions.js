@@ -1,5 +1,5 @@
 const actions = {
-    setUser: { type: '"SET_USER"'},
+    setUser: { type: 'SET_USER'},
     addTodo: { type: 'ADD_TODO'},
     saveTodo: { type: 'SAVE_TODO'},
     handleDone: { type: 'HANDLE_DONE'},
