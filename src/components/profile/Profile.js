@@ -30,11 +30,12 @@ export default function Profile() {
             public_repos, 
             public_gists, 
             followers, 
-            following 
+            following,
+            followers_url,
+            following_url
             } = useSelector(state => state.publicData);
   const { username } = useSelector(state => state);
   const blogHref = blog?.indexOf('http') > -1 ? blog : `https://www.${blog?.trim()}`;
-  console.log(blogHref, blog);
 
     const apiUrl = `https://api.github.com/users/${username}`;
     
@@ -77,9 +78,9 @@ export default function Profile() {
             {twitter_username && <p><IoLogoTwitter /> <span><a href={`https://www.twitter.com/${twitter_username}`}>@{twitter_username}</a></span></p>}
             {location && <p><IoLocationSharp /> <span>{location}</span></p>}
             {public_repos && <p><IoLogoBuffer /> <span>Repositories {public_repos}</span></p>}
-            {public_gists && <p><IoEarSharp /> <span>Gists {public_gists}</span></p>}
-            {followers && <p><IoPeopleSharp /> <span>Followers {followers}</span></p>}
-            {following && <p><IoPawSharp /> <span>Following {following}</span></p>}
+            {public_gists > 0 && <p><IoEarSharp /> <span><a href={`https://gist.github.com/${username}`}>Gists</a> {public_gists}</span></p>}
+            {followers > 0 && <p><IoPeopleSharp /> <span><a href={`https://github.com/${username}?tab=followers`}>Followers</a> {followers}</span></p>}
+            {following > 0 && <p><IoPawSharp /> <span><a href={`https://github.com/${username}?tab=following`}>Following</a>{following}</span></p>}
         </div>
     )
 }
