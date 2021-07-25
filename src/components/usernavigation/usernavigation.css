@@ -10,13 +10,12 @@
     left: 90%;
 }
 .user-avatar {
-    background: #D8D8D8;
-    border-radius: 50%;
-    width: 1.1em;
+    color: #72809d;
     padding-left: 0.25em;
 }
 .user-action {
-    margin-left: 0.2em;
+    margin-left: 0.1em;
+    margin-top: -0.2em;
     cursor: pointer;
 }
 .user-logout {

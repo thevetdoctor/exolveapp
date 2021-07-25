@@ -55,4 +55,27 @@
     color: #fff;
     background-color: rgb(22, 99, 88);
 }
+.tc {
+    width: 18em;
+    font-size: 0.8em;
+    display: flex;
+    margin-left: -6em;
+    margin-top: 1em;
+}
+.tc span {
+    margin-top: -0.2em;
+    margin-left: -0.5em;
+}
+.tc-red {
+    color: red;
+}
+.tc .input_section {
+    margin-right: 0;
+    margin-bottom: 1em;
+    width: 2em;
+}
+.btn {
+    margin-left: -2em;
+    margin-right: 11em;
+}
 

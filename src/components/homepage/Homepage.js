@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import GoTrue from 'gotrue-js';
+import axios from 'axios';
 import Loader from 'react-loader-spinner';
 import Input from '../input/Input';
 import Button from '../input/Buttons';
@@ -11,9 +12,9 @@ import './homepage.css';
 export default function Homepage() {
     const {getState, dispatch} = store;
     const state = getState();    
-    const { email, password, username, tag } = useSelector(state => state);
+    const { email, password, username, tc, tag } = useSelector(state => state);
     const [loading, setLoading] = useState(false);
-    const [signupMode, setSignupMode] = useState(true);
+    const [signupMode, setSignupMode] = useState(false);
     
   // Instantiate the GoTrue auth client with an optional configuration
   const auth = new GoTrue({
@@ -22,6 +23,36 @@ export default function Homepage() {
     setCookie: false,
   });
 
+  const apiUrl = `https://api.github.com/users/${username}`;
+
+  const fetchData = async() => {
+    if(username) {
+     
+     try {
+         const res = await axios({
+          method: 'GET',
+          url: `${apiUrl}`,
+          headers: {'Content-Type': 'application/json'}
+          });
+          dispatch({
+            type: 'SET_PUBLIC_DATA',
+            publicData: res.data
+          });
+          if(signupMode) {
+              signup();
+          } else {
+              login();
+          }
+        }  catch(e) {
+            setLoading(false);
+            dispatch({
+            type: 'SET_TAG',
+            error: e.message ? `Not a valid GITHUB username` : 'Error found'
+            });
+        }
+    }  
+  }
+  
   const signup = async() => {
     setLoading(true);
     await auth
@@ -69,12 +100,9 @@ export default function Homepage() {
 
     const handleSubmit = () => {
         setLoading(true);
-        if(signupMode) {
-            signup();
-        } else {
-            login();
-        }
+        fetchData();
     }
+
     return (
         <div className='homepage-banner'>
             <div className='homepage-top'>
@@ -102,6 +130,7 @@ export default function Homepage() {
                     <Input 
                         label='Password'
                         type='password'
+                        // type='password'
                         value={password}
                         name='password'
                         placeholder='Enter your password'
@@ -114,12 +143,21 @@ export default function Homepage() {
                         name='username'
                         placeholder='Enter your github username'
                     />
+                    <div className={`tc ${!tc && 'tc-red'}`}>
+                        <Input 
+                        // label='Accept Terms & Conditions'
+                        type='checkbox'
+                        value={tc}
+                        name='tc'
+                        placeholder='Enter your github username'
+                        /><span>Accept Terms & Conditions</span>
+                    </div>
                     {!loading ?
                     <Button
                         name={signupMode ? 'SIGNUP' : 'LOGIN'}
                         classname='btn'
                         onClick={handleSubmit}
-                        disabled={!email || !password || !username}
+                        disabled={!email || !password || !username || !tc}
                     />
                     :
                     <Loader 

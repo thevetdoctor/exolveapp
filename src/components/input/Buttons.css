@@ -12,7 +12,7 @@ button {
 
 .btn {
     color: #fff;
-    margin-right: 9em;
+    /* margin-right: 9em; */
     padding: 0.5em;
     background-color: rgb(21, 78, 105);
 }

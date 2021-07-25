@@ -26,6 +26,9 @@
 .main-span {
     flex: 10;
     width: 15em;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }
 input {
     background-color: #9f9f9f;
@@ -35,6 +38,7 @@ input {
     font-weight: bold;
     padding: 0.2em;
     border-radius: 0.3em;
+    align-items: center;
 }
 .invalid {
     color: #8C70FF;

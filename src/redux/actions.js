@@ -6,6 +6,7 @@ const actions = {
     setUsername: { type: 'SET_USERNAME'},
     setPassword: { type: 'SET_PASSWORD'},
     setEmail: { type: 'SET_EMAIL'},
+    setTC: { type: 'SET_TC'},
     setAuthenticate: { type: 'SET_AUTHENTICATE'},
     setPublicData: { type: 'SET_PUBLIC_DATA'},
     setRepoData: { type: 'SET_REPO_DATA'},

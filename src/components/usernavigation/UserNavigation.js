@@ -4,7 +4,7 @@ import GoTrue from 'gotrue-js';
 import { IoChevronDownSharp,
         IoChevronUpSharp,
          IoNotificationsSharp, 
-         IoPersonSharp,
+         IoPersonCircleSharp,
          IoExitSharp
         } from 'react-icons/io5';
 import store from '../../redux/store';
@@ -54,7 +54,7 @@ export default function UserNavigation() {
                 />
             </span>
             <span className='user-avatar'>
-                <IoPersonSharp size='0.9em'/>
+                <IoPersonCircleSharp size='1.1em'/>
             </span>
             <span className='user-action' onClick={() => navigate()}>
                 {!nav ? 

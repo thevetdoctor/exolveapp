@@ -10,7 +10,12 @@ export default function Input(props) {
     const handleInputChange = (e) => {
                 const target = e.target;
                 const name = target.name;
-                const value = target.value;
+                let value;
+                if(target.type === 'checkbox') {
+                    value = target.checked;
+                } else {
+                    value = target.value;
+                }
             
                 // console.log(name, value, `SET_${name.toUpperCase()}`);
                 dispatch({
@@ -23,14 +28,14 @@ export default function Input(props) {
         <div className='input_section'>
             <label>{props.label}</label>
             <input
-            type={props.type}
-            name={props.name}
-            value={props.value}
-            pattern={props.pattern}
-            maxLength={props.maxLength}
-            placeholder={props.placeholder}
-            onChange={handleInputChange}
-            required
+                type={props.type}
+                name={props.name}
+                value={props.value}
+                pattern={props.pattern}
+                maxLength={props.maxLength}
+                placeholder={props.placeholder}
+                onChange={handleInputChange}
+                required
             />
             <span style={{ marginTop: '0.7em', display: 'inline', color: 'red'}}>{props.tag}</span>
         </div>

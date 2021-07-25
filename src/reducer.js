@@ -38,7 +38,7 @@ export default function reducer(state= initialState, action) {
             console.log('Adding github username');
             localStorage.setItem('username', JSON.stringify(action.data));
             return {
-                ...state, username: action.data
+                ...state, username: action.data, tag: ''
             };
         case actions.setPassword.type:
             console.log('Adding password');
@@ -49,6 +49,11 @@ export default function reducer(state= initialState, action) {
             console.log('Adding email');
             return {
                 ...state, email: action.data
+            };
+        case actions.setTC.type:
+            console.log('Updating T&C');
+            return {
+                ...state, tc: action.data
             };
         case actions.setAuthenticate.type:
             console.log('Setting authenticate');
@@ -101,5 +106,6 @@ export const initialState = {
     email: '',
     password: '',
     tag: '',
+    tc: false,
     authenticated: JSON.parse(localStorage.getItem('authenticated')) || false
 };

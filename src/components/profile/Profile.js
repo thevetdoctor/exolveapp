@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, Fragment } from 'react';
 import { IoLogoLinkedin, 
          IoLogoTwitter, 
          IoMailSharp, 
@@ -13,12 +12,15 @@ import { IoLogoLinkedin,
          IoLocationSharp
         } from 'react-icons/io5';
 import { useSelector } from 'react-redux';
+import Loader from 'react-loader-spinner';
 import store from '../../redux/store';
 import './profile.css';
 
 export default function Profile() {
   const {getState, dispatch} = store;
   const state = getState();     
+
+  const [loading, setLoading] = useState(true);
   const { bio,
             blog,
             name,
@@ -31,35 +33,21 @@ export default function Profile() {
             public_gists, 
             followers, 
             following,
-            followers_url,
-            following_url
             } = useSelector(state => state.publicData);
   const { username } = useSelector(state => state);
   const blogHref = blog?.indexOf('http') > -1 ? blog : `https://www.${blog?.trim()}`;
-
-    const apiUrl = `https://api.github.com/users/${username}`;
-    
+ 
     useEffect(() => {
-        const fetchData = async() => {
-          if(username) {
-            const res = await axios({
-            method: 'GET',
-            url: `${apiUrl}`,
-            headers: {'Content-Type': 'application/json'}
-            });
-            // console.log("API data", res.data);
-            dispatch({
-              type: 'SET_PUBLIC_DATA',
-              publicData: res.data
-            });
-          }  
-        }
-        fetchData();
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
         return () => console.log('cleanup Profile.js')
-      }, [username]);
+      }, []);
       
     return (
         <div className='profile'>
+          {!loading ?
+          <Fragment>
             <p className=''>
                 <span>
                     <img 
@@ -81,6 +69,18 @@ export default function Profile() {
             {public_gists > 0 && <p><IoEarSharp /> <span><a href={`https://gist.github.com/${username}`}>Gists</a> {public_gists}</span></p>}
             {followers > 0 && <p><IoPeopleSharp /> <span><a href={`https://github.com/${username}?tab=followers`}>Followers</a> {followers}</span></p>}
             {following > 0 && <p><IoPawSharp /> <span><a href={`https://github.com/${username}?tab=following`}>Following</a>{following}</span></p>}
+        </Fragment>
+        :
+        <Fragment>
+          <div>
+            <Loader 
+              type='ThreeDots'
+              color='#00bfff'
+              height={40} 
+              width={40} 
+            />
+          </div>
+        </Fragment>}
         </div>
     )
 }
