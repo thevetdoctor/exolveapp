@@ -14,7 +14,7 @@ export default function Dashboard() {
                 Refresh the page to check your github information!!!
             </span>              */}
             <UserNavigation />
-            <h2>Exolve App</h2>
+            <h2>My GITHUB Dashboard App</h2>
             <div className='app'>
                 <div className='app-left'> 
                     <Profile />

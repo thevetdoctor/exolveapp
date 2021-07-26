@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import GoTrue from 'gotrue-js';
+// import GoTrue from 'gotrue-js';
+import { auth } from '../../firebase';
 import { IoChevronDownSharp,
         IoChevronUpSharp,
          IoNotificationsSharp, 
@@ -19,31 +20,38 @@ export default function UserNavigation() {
     }
     
     // Instantiate the GoTrue auth client with an optional configuration
-    const auth = new GoTrue({
-        APIUrl: 'https://goofy-kare-a5c4ce.netlify.app/.netlify/identity',
-        audience: '',
-        setCookie: false,
-    });
+    // const auth = new GoTrue({
+    //     APIUrl: 'https://goofy-kare-a5c4ce.netlify.app/.netlify/identity',
+    //     audience: '',
+    //     setCookie: false,
+    // });
   
-  const logout = () => {
+  const logout = async() => {
 
-        const user = auth.currentUser();
-        try{
-            user
-            .logout()
-            .then(response => console.log("User logged out"))
-            .catch(error => {
-                console.log("Failed to logout user: %o", error);
-                throw error;
-            });
+        // try{
+        await auth
+                .signOut()
+                .then(() => {
+                    console.log("User logged out");
+                    dispatch({
+                        type: 'SET_LOGOUT',
+                    });
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                });
+        
+            // user
+            // .logout()
+            // .then(response => console.log("User logged out"))
+            // .catch(error => {
+            //     console.log("Failed to logout user: %o", error);
+            //     throw error;
+            // });
 
-        } catch(error) {
-            console.log(error);
-        }  
-
-        dispatch({
-            type: 'SET_LOGOUT',
-        });
+        // } catch(error) {
+        //     console.log(error.message);
+        // }  
     };
 
     return (

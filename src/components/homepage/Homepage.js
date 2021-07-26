@@ -1,14 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import GoTrue from 'gotrue-js';
+// import GoTrue from 'gotrue-js';
+import { auth } from '../../firebase';
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
 import Input from '../input/Input';
 import Button from '../input/Buttons';
 import store from '../../redux/store';
 import './homepage.css';
-
+ 
 export default function Homepage() {
     const {getState, dispatch} = store;
     const state = getState();    
@@ -17,11 +18,11 @@ export default function Homepage() {
     const [signupMode, setSignupMode] = useState(false);
     
   // Instantiate the GoTrue auth client with an optional configuration
-  const auth = new GoTrue({
-    APIUrl: 'https://goofy-kare-a5c4ce.netlify.app/.netlify/identity',
-    audience: '',
-    setCookie: false,
-  });
+//   const auth = new GoTrue({
+//     APIUrl: 'https://goofy-kare-a5c4ce.netlify.app/.netlify/identity',
+//     audience: '',
+//     setCookie: false,
+//   });
 
   const apiUrl = `https://api.github.com/users/${username}`;
 
@@ -39,9 +40,9 @@ export default function Homepage() {
             publicData: res.data
           });
           if(signupMode) {
-              signup();
+              register();
           } else {
-              login();
+              signIn();
           }
         }  catch(e) {
             setLoading(false);
@@ -53,6 +54,60 @@ export default function Homepage() {
     }  
   }
   
+
+    const signIn = async() => {
+        // e.preventDefault();
+        await auth
+            .signInWithEmailAndPassword(email, password)
+            .then(auth => {
+                console.log('User logged in');
+                setLoading(false);
+                dispatch({
+                    type: 'SET_USER',
+                    user: auth
+                });
+                dispatch({
+                    type: 'SET_AUTHENTICATE',
+                    data: true
+                });
+            })
+            .catch((error) => {
+                console.log(error.message);
+                setLoading(false);
+                dispatch({
+                  type: 'SET_TAG',
+                  error: error.message.indexOf('no user') > -1 ? 'Account not found, please select signup' : error.message
+                });             
+              });
+    }
+
+    const register = async() => {
+        // e.preventDefault();
+        await auth
+            .createUserWithEmailAndPassword(email, password)
+            .then((auth) => {
+                console.log('User signed up');
+                setLoading(false);
+                dispatch({
+                    type: 'SET_USER',
+                    user: auth
+                });
+                dispatch({
+                    type: 'SET_AUTHENTICATE',
+                    data: true
+                });
+            })  
+            .catch((error) => {
+                console.log("It's an error", error.message);
+                setLoading(false);
+                dispatch({
+                  type: 'SET_TAG',
+                  error: error.message.indexOf('already') > -1 ? 'Account already exist, please select login' : error.message
+
+                }); 
+            });
+    }
+
   const signup = async() => {
     setLoading(true);
     await auth
@@ -63,7 +118,8 @@ export default function Homepage() {
                   dispatch({
                     type: 'SET_TAG',
                     error: 'Successful, please check your email'
-                  });                 })
+                  });                 
+             })
               .catch((error) => {
                   console.log("It's an error", error);
                   setLoading(false);
@@ -124,13 +180,13 @@ export default function Homepage() {
                         label='Email'
                         type='text'
                         value={email}
+                        defalutValue={email}
                         name='email'
                         placeholder='Enter your email'
                     />
                     <Input 
                         label='Password'
                         type='password'
-                        // type='password'
                         value={password}
                         name='password'
                         placeholder='Enter your password'
@@ -145,7 +201,6 @@ export default function Homepage() {
                     />
                     <div className={`tc ${!tc && 'tc-red'}`}>
                         <Input 
-                        // label='Accept Terms & Conditions'
                         type='checkbox'
                         value={tc}
                         name='tc'

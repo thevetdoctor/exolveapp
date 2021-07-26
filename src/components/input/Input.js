@@ -37,7 +37,14 @@ export default function Input(props) {
                 onChange={handleInputChange}
                 required
             />
-            <span style={{ marginTop: '0.7em', display: 'inline', color: 'red'}}>{props.tag}</span>
+            <span style={{ 
+                    marginTop: '0.7em', 
+                    display: 'inline', 
+                    color: 'red',
+                    fontSize: '0.8em'
+                    }}>
+                        {props.tag}
+            </span>
         </div>
     )
 }
