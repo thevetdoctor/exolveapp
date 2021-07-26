@@ -5,7 +5,7 @@ import { IoEllipsisVertical, IoChevronDownCircleOutline } from 'react-icons/io5'
 export default function Row({rowName, description, issues, url, stargazersCount, forks, rowClass}) {
     return (
         <div className={`row ${rowClass}`}>
-            <span className='mini-span'>
+            <span className='mini-span-small'>
                 <input
                     type='checkbox' 
                 />
@@ -18,8 +18,8 @@ export default function Row({rowName, description, issues, url, stargazersCount,
             <span className='mini-span span-name'>
                 {rowName}
             </span>
-            <span className='main-span'>
-                {description ? description : 'No description specified'}
+            <span className='main-span desc'>
+                {description ? <>{description.slice(0, 125)}</> : 'No description specified'}
             </span>
             <span className='mini-span'>
                 {typeof(issues) !== 'string' ? 
@@ -72,7 +72,7 @@ export default function Row({rowName, description, issues, url, stargazersCount,
                     <span>{forks}</span>
                 }
             </span>
-            <span className='mini-span'>
+            <span className='mini-span-small'>
                 <IoEllipsisVertical />
             </span>
         </div>
